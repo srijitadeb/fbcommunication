@@ -1,0 +1,179 @@
+ body {
+            padding-top: 70px;
+            background: #eeeeee;
+        }
+
+        .fb-search-bar{
+          height:30px;
+          width: 100% !important;
+      }
+        .header-form{
+            width: 30%;
+            position: relative;
+        }
+        .header-form .form-group{
+            width: 100%;
+        }
+        .search-icon{
+            position: absolute;
+            right:30px;
+            top:9px;
+        }
+        .nav-header{
+            background-color: #4267b2;
+        }
+        .profile-post{
+            display: inline-block;
+            height: 40px;
+            font-size: 33px;
+            position: relative;
+            top:-10px
+        }
+        .post-textarea{
+            border: none;
+            width: 100%;
+            resize: none;
+        }
+        .post-chips{
+            background: #e6e6e6;
+            margin-right: 10px;
+            height: 32px;
+            display: inline-block;
+            line-height: 32px;
+            border-radius: 12px;
+            padding:0px 10px;
+            min-width: 47px;
+            text-align: center;
+        }
+        .post-chips i{
+            position: relative;
+            top: 2px;
+        }
+        .post-chips a{
+            margin-left: 5px;
+        }
+        .postclick{
+            cursor: pointer;
+        }
+        .hr-post{
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .feed-footer-item{
+            margin-right: 30px;
+        }
+        .feed-footer-item i{
+            margin-right: 6px;
+        }
+        .side-bar-trending .panel-heading i{
+
+            margin-right: 10px;
+        }
+        .chat-list li{
+            height: 30px;
+            line-height: 30px;
+        }
+        .chat-box{
+            position: fixed;
+            width: 200px;
+            right: 0px;
+            border-left: 1px solid #e7e7e7;
+            height: 100%;
+            top:50px;
+        }
+        .fix-scroll{
+            position: fixed;
+        }
+        .topSpace{
+            margin-top: 20px; 
+        }
+        .commentField{
+                width: 100%;
+            height: 10px;
+            padding: 18px !important;
+        }
+        .responseList{
+            list-style: none;
+            padding-left: 0px;
+        }
+       .repIcon{
+               height: 30px;
+    width: 30px;
+       }   
+       .repuserName{
+           font-size: 14px;
+       }   
+        .commentBtn{
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            .chat-box{
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 800px) {
+
+            .trending-middle-pane{
+                display: none;
+            }
+
+        }
+        @media only screen and (max-width: 500px) {
+        .profile-first-pane{
+            display: none;
+          }
+        }
+
+        .spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}

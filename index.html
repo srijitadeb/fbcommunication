@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="fbCommunicationApp">
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+  <link href="app.less" type="text/css" rel="stylesheet/less">
+</head>
+<body>
+
+  <!-- Livereload script for development only (stripped during dist build) -->
+  <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
+
+  <!-- JS from Bower Components -->
+  <script src="bower_components/less.js/dist/less.js" data-concat="false"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <!-- Add New Bower Component JS Above -->
+
+
+  <!-- Main App JS -->
+  <script src="app.js"></script>
+  <script src="partial/client/client.js"></script>
+  <!-- Add New Component JS Above -->
+
+  <div>
+    <div id="content" class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top nav-header">
+              <div class="container">
+
+                  <div class="nav-header">
+
+                      <a class="navbar-brand" style="padding-top: 5px;padding-right: 0px;color:white;">
+                          <i class="fa fa-facebook-official fa-2x"></i>
+                      </a>
+                  </div>
+                  <form class="navbar-form navbar-left header-form" role="search">
+                      <div class="form-group">
+                          <input type="text" class="form-control fb-search-bar" placeholder="Search">
+                      </div>
+                      <span class="fa fa-search search-icon"></span>
+                  </form>
+
+
+                  <ul class="nav navbar-nav navbar-right" style="margin-right: 100px" >
+                      <li><a style="color:white;">User</a></li>
+                      <li><a style="color:white;">Home</a></li>
+                      <li><a style="color:#122b40;"><i class="fa fa-commenting" aria-hidden="true"></i></a></li>
+                      <li><a style="color:#122b40;"><i class="fa fa-commenting" aria-hidden="true"></i>
+                      </a></li>
+                  </ul>
+              </div>
+          </nav>
+          <div ui-view>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

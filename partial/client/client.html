@@ -1,0 +1,447 @@
+<div  ng-controller="ClientCtrl">
+    <div class="container">
+
+    <div class="row">
+        <div class="col-md-2 profile-first-pane">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8">
+                    <ul class="list-unstyled">
+                        <li><a>Get Curried</a></li>
+                        <li><a>News Feed</a></li>
+                        <li><a>Messenger</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-12">
+
+            <div class="row">
+                <div class="col-sm-12" on-full-scroll  action="addPost()">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading">
+
+                            <span><a><i class="fa fa-pencil"></i>  Create post</a> <span style="color:#d6d6d6;font-weight: 200">|</span></span>
+                            <span> <a>
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> photo/video album
+
+                            </a> <span style="color:#d6d6d6;font-weight: 200">|</span></span>
+                            <span><a> <i class="fa fa-video-camera" aria-hidden="true"></i>  Live video</a></span>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <span class="profile-post">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        </span>
+                                </div>
+                                <div class="col-sm-11">
+                                    <textarea class="post-textarea"  placeholder="Share an update ..." ng-model="postData"></textarea>
+                                </div>
+                                </div>
+                            <hr class="hr-post" />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="post-chips">
+                                        <i class="fa fa-picture-o"  style="color: #54c56a;font-size:large" aria-hidden="true"></i>
+                                       <a> Photo/video</a>
+                                    </span>
+
+                                     <span class="post-chips">
+                                            <i class="fa fa-smile-o" style="color:#ffcb32;font-size: large" aria-hidden="true"></i>
+                                        <a> Feeling/Activity</a>
+                                    </span>
+
+                                     <span class="post-chips">
+                                            <i class="fa fa-ellipsis-h" style="color:grey;font-size: large" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="post-chips postclick">
+                                        <a ng-click="postStatus(postData)"> Post</a>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+                    <div class="panel panel-default" ng-show="showLoader">
+                        <div class="spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </div>
+                    <!---*********Post************-->
+                     <div class="panel panel-default" ng-repeat="post in posts track by $index">
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-sm-1">
+
+                                    <img class="_s0 _4ooo _5xib _5sq7 _44ma _rw img" src="https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p100x100/14666032_1267142533335819_2791857476511702119_n.jpg?oh=5e1d683fd97896c8ebb5bd4e2835a208&amp;oe=5A01F749" alt="" aria-label="Mint" role="img" width="40px">
+                                </div>
+                                <div class="col-sm-11">
+                                    <a style="font-size: 16px">Get Curried</a>
+
+                                    <div style="color: darkgrey;font-size: small">
+                                        {{post.timeDiff}} <i class="fa fa-globe" aria-hidden="true"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row topSpace">
+                                <div class="col-sm-12">
+                                    {{post.text}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feed-footer-item"> <i class="fa fa-thumbs-up" aria-hidden="true"></i> <span>Like</span></span>
+                                    <span class="feed-footer-item commentBtn" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-comment" aria-hidden="true"></i><span>comment</span></span>
+                                    <span class="feed-footer-item"><i class="fa fa-share" aria-hidden="true"></i><span>Share</span></span>
+                                </div>
+                            </div>
+                            <div class="row topSpace">
+                                <div class="col-sm-12">
+                                    <div uib-collapse="isCollapsed">
+                                        <input type="text" class="well well-lg commentField" placeholder="Write a comment..." ng-model="post.replyData" ng-keypress="replyFun($event,$index,reply)">
+                                    </div>
+                                    <ul class="responseList" ng-repeat="reply in post.replies track by $index">
+                                        <li>
+                                            <span>
+                                                <img class="_s0 _4ooo _5xib _5sq7 _44ma _rw img repIcon" src="https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p100x100/14666032_1267142533335819_2791857476511702119_n.jpg?oh=5e1d683fd97896c8ebb5bd4e2835a208&amp;oe=5A01F749" alt="" aria-label="Mint" role="img" width="40px">
+                                            </span>
+                                            <span class="repuserName"><a>Get Curried</a></span>
+                                            <i>{{reply.comment}}</i><br>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---********end post *********-->
+                    <!--<div class="panel panel-default" ng-repeat="post in posts">
+                        <div class="panel-body">
+
+                            <div class="row topSpace">
+                                <div class="col-sm-1">
+
+                                    <img class="_s0 _4ooo _5xib _5sq7 _44ma _rw img" src="https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p100x100/14666032_1267142533335819_2791857476511702119_n.jpg?oh=5e1d683fd97896c8ebb5bd4e2835a208&amp;oe=5A01F749" alt="" aria-label="Mint" role="img" width="40px">
+                                </div>
+                                <div class="col-sm-11">
+                                    <a style="font-size: 16px">Mint</a>
+
+                                    <div style="color: darkgrey;font-size: small">
+                                        1 hr <i class="fa fa-globe" aria-hidden="true"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row topSpace">
+                                <div class="col-sm-12">
+                                Since Reliance Jio’s launch in September, mobile phone bills have fallen Rs11,600 crore on a quarterly basis, or Rs46,600 crore on annualized basis
+                                </div>
+                            </div>
+                            <div class="row topSpace">
+                                <div class="col-sm-12">
+
+                                <img class="scaledImageFitWidth img" src="https://external.fmaa1-1.fna.fbcdn.net/safe_image.php?w=476&amp;h=249&amp;url=http%3A%2F%2Fwww.livemint.com%2Frf%2FImage-621x414%2FLiveMint%2FPeriod2%2F2017%2F07%2F11%2FPhotos%2FProcessed%2Fg_m2m_telecom_web-kdlH--621x414%40LiveMint.jpg&amp;cfs=1&amp;upscale=1&amp;_nc_hash=AQA_YPHsEM9WRjmM" alt="" width="476" height="249">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="feed-footer-item"> <i class="fa fa-thumbs-up" aria-hidden="true"></i> <span>Like</span></span>
+                                    <span class="feed-footer-item"><i class="fa fa-comment" aria-hidden="true"></i><span>comment</span></span>
+                                    <span class="feed-footer-item"><i class="fa fa-share" aria-hidden="true"></i><span>Share</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 trending-middle-pane">
+
+
+            <div class="row">
+                <div class="col-sm-12" fix-on-scroll>
+                    <div class="panel panel-default side-bar-trending">
+                        <div class="panel-heading" style="background: white;color: #d2d2d2;border:none">
+
+                            Trending
+
+                            <i class="fa fa-flask pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-film pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-line-chart pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-futbol-o pull-right" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="panel-body" style="font-size: small">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default side-bar-trending">
+                        <div class="panel-heading" style="background: white;color: #d2d2d2;border:none">
+
+                            Trending
+
+                            <i class="fa fa-flask pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-film pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-line-chart pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-futbol-o pull-right" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="panel-body" style="font-size: small">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default side-bar-trending">
+                        <div class="panel-heading" style="background: white;color: #d2d2d2;border:none">
+
+                            Trending
+
+                            <i class="fa fa-flask pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-film pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-line-chart pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-futbol-o pull-right" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="panel-body" style="font-size: small">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default side-bar-trending">
+                        <div class="panel-heading" style="background: white;color: #d2d2d2;border:none">
+
+                            Trending
+
+                            <i class="fa fa-flask pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-film pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-line-chart pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-futbol-o pull-right" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="panel-body" style="font-size: small">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default side-bar-trending">
+                        <div class="panel-heading" style="background: white;color: #d2d2d2;border:none">
+
+                            Trending
+
+                            <i class="fa fa-flask pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-film pull-right" aria-hidden="true"></i>
+
+                            <i class="fa fa-line-chart pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-futbol-o pull-right" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="panel-body" style="font-size: small">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-line-chart " aria-hidden="true"></i>
+
+                                    <a>
+                                        Marin Cilic vs. Roger Federer
+                                    </a>
+                                    <span>
+                                        Wimbledon 2017: Cilic Ready for a Good Showing Against Federer ‑ news18.com
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
